@@ -19,7 +19,13 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if notice || alert%>
+      <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md p-2">
+        <%= notice ? notice : alert %>
+      </div>
+    <% end %>
+
+    <main class="container mx-auto mt-28 px-5 flex">      
       <%= yield %>
     </main>
   </body>
