@@ -1,5 +1,5 @@
-<div class="w-full flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg shadow-lg">
-  <div class="container w-1/2 p-4">
+<div class="w-full flex flex-col items-center bg-gray-200 p-8 rounded-lg shadow-lg">
+  <div class="container w-3/4 p-4">
     <h1 class="text-3xl font-bold mb-4">Search Page</h1>
     <%= form_with model: SearchQuery, data: { turbo: true, controller: 'auto-submit' } do |form| %>
       <%= form.label 'Article', class: 'font-bold' %>
@@ -8,9 +8,12 @@
         <%= form.submit 'Search it', class: 'bg-blue-400 text-white p-2 rounded hover:bg-blue-500 shadow-xl shadow-gray-300 transition ease-in-out hover:shadow-gray-400 hover:p-2.5' %>
       </div>
     <% end %>
+    <%= turbo_frame_tag "last_queries" do %>
+      <%= render partial: 'search_queries/partials/query_results', locals: { queries: SearchQuery.none } %>
+    <% end %>
   </div>
 </div>
 
-<%= turbo_frame_tag "last_queries" do %>
-  <%= render partial: 'search_queries/partials/query_results', locals: { queries: SearchQuery.last(10).reverse } %>
+<%= turbo_frame_tag "trending" do %>
+  <%= render partial: 'search_queries/partials/trending', locals: { trending: all_trending_queries } %>
 <% end %>

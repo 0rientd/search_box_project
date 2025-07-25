@@ -26,7 +26,15 @@
       </div>
     <% end %>
 
-    <main class="container mx-auto mt-28 px-5 flex">      
+    <main class="container w-3/4 mx-auto mt-28 px-5">
+      <div class="flex justify-end mb-2">
+        <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+          <%= link_to "Trending Searches", trending_search_queries_path, data: { turbo_stream: true } %>
+        </div>
+        <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+          <%= link_to "Analytics", url: analytics_search_queries_path %>
+        </div>
+      </div>
       <%= yield %>
     </main>
   </body>
