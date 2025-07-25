@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  resources :search_queries
+
+  get "trending" => "search_queries#trending", as: :trending_search_queries
+  get "analytics" => "search_queries#analytics", as: :analytics_search_queries
+  get "top_searches" => "search_queries#top_searches", as: :top_search_queries
+
   # Defines the root path route ("/")
-  root "search#index"
+  root "search_queries#index"
 end

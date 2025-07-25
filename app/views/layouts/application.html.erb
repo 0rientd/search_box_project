@@ -3,7 +3,7 @@
   <head>
     <title><%= content_for(:title) || "Search Box Project" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,10 +16,25 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= turbo_include_tags %>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if notice || alert%>
+      <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md p-2">
+        <%= notice ? notice : alert %>
+      </div>
+    <% end %>
+
+    <main class="container w-3/4 mx-auto mt-28 px-5">
+      <div class="flex justify-end mb-2">
+        <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+          <%= link_to "Trending Searches", trending_search_queries_path, data: { turbo_stream: true } %>
+        </div>
+        <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+          <%= link_to "Analytics", analytics_search_queries_path, data: { turbo_stream: true } %>
+        </div>
+      </div>
       <%= yield %>
     </main>
   </body>

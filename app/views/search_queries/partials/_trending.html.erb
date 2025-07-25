@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "sub_menu" do %>
+  <div class="mt-4 mb-2">
+    <h2 class="font-bold text-xl ml-2"> Trending Searches 🔥</h2>
+  </div>
+  <div clas="flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg shadow-lg">
+    <% trending.each_with_index do |trend, index| %>
+      <div class="mx-auto bg-white w-full p-2 mb-2 ml-2 rounded shadow">
+        <h2 class="text-xl font-semibold">
+          <%= "#{index + 1}." %> <%= format_trend_information(trend) %>
+        </h2>
+      </div>
+    <% end %>
+  </div>
+<% end %>

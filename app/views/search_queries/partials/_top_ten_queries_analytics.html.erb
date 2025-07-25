@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "analytics" do %>
+  <div clas="flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg shadow-lg">
+    <% analytics.each_with_index do |analytics, index| %>
+      <div class="mx-auto bg-white w-full p-2 mb-2 ml-2 rounded shadow">
+        <h2 class="text-xl font-semibold">
+          <%= "#{index + 1}." %> <%= format_top_ten_information(analytics) %>
+        </h2>
+      </div>
+    <% end %>
+  </div>
+<% end %>

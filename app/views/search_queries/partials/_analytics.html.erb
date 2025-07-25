@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "sub_menu" do %>
+  <div>
+    <div class="mt-4 mb-2 flex justify-between">
+      <h2 class="font-bold text-xl ml-2"> Analytics about your searches</h2>
+      <div class="text-gray-600">Total Searches: <%= SearchQuery.where(ip_address: request.remote_ip).count %></div>
+    </div>
+    <div class="flex items-center mb-4">
+      <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+        <%= link_to "All Your Searches", analytics_search_queries_path, data: { turbo_stream: true } %>
+      </div>
+      <div class="mx-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition ease-in-out">
+        <%= link_to "🔝 Your Top 10 Searches", top_search_queries_path, data: { turbo_stream: true } %>
+      </div>
+    </div>
+  </div>
+  <%= turbo_frame_tag "analytics" do %>
+    <div clas="flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg shadow-lg">
+      <% analytics.each_with_index do |analytics, index| %>
+        <div class="mx-auto bg-white w-full p-2 mb-2 ml-2 rounded shadow">
+          <h2 class="text-xl font-semibold">
+            <%= "#{index + 1}." %> <%= format_analytics_information(analytics) %>
+          </h2>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
