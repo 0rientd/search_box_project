@@ -1,24 +1,15 @@
-# README
+# SearchBox Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In this project, where we used Turbo, SQL and Stimulus, we can search for articles with a real time search mechanism.
 
-Things you may want to cover:
+With a analytic view, we can see some information for your top articles search and all of your own history of search.
+Also, we can see the trending articles what are being searched.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## How to install?
+Start cloning the project to a folder and then, do the following commands:
+```bash
+  > bundle install
+  > bundle exec rails db:create db:migrate db:seed
+  > bin/dev
+```
+Access it on `http://localhost:3000`
