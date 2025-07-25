@@ -65,7 +65,7 @@ class SearchQueriesController < ApplicationController
     if params[:search_query][:term].blank?
       return Article.none
     else
-      return Article.where("title LIKE '%#{@query.term}%'")
+      return Article.where("title LIKE ?", "%#{@query.term}%")
     end
   end
 end
