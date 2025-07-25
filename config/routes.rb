@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "trending" => "search_queries#trending", as: :trending_search_queries
   get "analytics" => "search_queries#analytics", as: :analytics_search_queries
+  get "top_searches" => "search_queries#top_searches", as: :top_search_queries
 
   # Defines the root path route ("/")
   root "search_queries#index"

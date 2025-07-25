@@ -8,4 +8,16 @@ module SearchQueriesHelper
 
     "#{trend.first} (#{trend.last} hits)"
   end
+  
+  def format_analytics_information(analytic)
+    return if analytic.blank?
+
+    "Query: #{analytic.query} | (From #{analytic.ip_address})"
+  end
+  
+  def format_top_ten_information(analytic)
+    return if analytic.blank?
+
+    "Query: #{analytic.first} (#{analytic.last} hits)"
+  end
 end
