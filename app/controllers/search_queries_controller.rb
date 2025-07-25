@@ -10,14 +10,14 @@ class SearchQueriesController < ApplicationController
       if article && @query.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { queries: show_articles }),
+            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { articles: show_articles }),
             turbo_stream.replace("sub_menu", partial: "search_queries/partials/trending", locals: { trending: SearchQuery.group(:term).order('count_id DESC').limit(5).count(:id) })
           ]
         end
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { queries: show_articles }),
+            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { articles: show_articles }),
             turbo_stream.replace("sub_menu", partial: "search_queries/partials/trending", locals: { trending: SearchQuery.group(:term).order('count_id DESC').limit(5).count(:id) })
           ]
         end

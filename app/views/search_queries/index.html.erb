@@ -9,7 +9,7 @@
       </div>
     <% end %>
     <%= turbo_frame_tag "last_queries" do %>
-      <%= render partial: 'search_queries/partials/query_results', locals: { queries: SearchQuery.none } %>
+      <%= render partial: 'search_queries/partials/query_results', locals: { articles: Article.none } %>
     <% end %>
   </div>
 </div>
