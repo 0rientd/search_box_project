@@ -6,12 +6,8 @@ class SearchQueriesController < ApplicationController
     @query.ip_address = request.remote_ip
     article = Article.find_by(title: @query.query)
 
-    if @query.query.blank?
-      @query.query = "No query provided"
-    end
-
     respond_to do |format|
-      if @query.save
+      if article && @query.save
           format.turbo_stream do
             render turbo_stream: [
               turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { queries: show_articles }),
@@ -21,7 +17,7 @@ class SearchQueriesController < ApplicationController
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { queries: SearchQuery.none }),
+            turbo_stream.replace("last_queries", partial: "search_queries/partials/query_results", locals: { queries: show_articles }),
             turbo_stream.replace("sub_menu", partial: "search_queries/partials/trending", locals: { trending: SearchQuery.group(:query).order('count_id DESC').limit(5).count(:id) })
           ]
         end
