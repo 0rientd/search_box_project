@@ -64,4 +64,4 @@ group :test do
 end
 
 
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.6"
